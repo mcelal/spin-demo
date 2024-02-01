@@ -1,0 +1,61 @@
+---
+###########################################
+# Basic Server Configuration
+###########################################
+server_timezone: "Etc/UTC"
+server_contact: info@mcelal.com
+
+# SSH
+ssh_port: "22"
+
+## Email Notifications
+postfix_hostname: "{{ inventory_hostname }}"
+
+## Set variables below to enable external SMTP relay
+# postfix_relayhost: "smtp.example.com"
+# postfix_relayhost_port: "587"
+# postfix_relayhost_username: "myusername"
+# postfix_relayhost_password: "mysupersecretpassword"
+
+##############################################################
+# Deploy User
+##############################################################
+# Docker user configuration.
+docker_user:
+  username: deploy
+  uid: 9999
+  group: deploy
+  secondary_groups: "docker"
+  gid: 9999
+  ## Uncomment to set authorized SSH keys for the docker user.
+  authorized_ssh_keys:
+    - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9EKEZ9VtKulDa3FIgOTT8AHJWCySS9qk6iXx+GzWY0oUdnvdlfggrvTQN3y9WFusHuAzYm1rfWP6g9ZFM0RKLKkrqvt+dncyY9ekjbs+bmemSORxbMH5hMYMw0Vx4z0cdp5dOB+MtHJohkhuppUoaxeUxubU+i7hUQXUou7KAaBHMcByKmrnK4Yj+bj1dZSLc8lQJvkHks+/eLTVQln6oQQu0BXak1JNl3nBZ44EJSkAsEFW9fIOXIR21AbTPm0eLLgcfWNIITlcPHRO4rvgENGawZiEBzAu2u1V3C3GiCb6wZk28NA2jQn6wxV9YvVEq03yb02f8NDMfg6li23iT ssh-key-2024-01-13"
+  #   - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFRfXxUZ8q9vHRcQZ6tLb0KwGHu8xjQHfYopZKLmnopQ anotherfake@key"
+
+##############################################################
+# Users
+##############################################################
+
+### Use the template below to set users and their authorized keys
+## Passwords must be set with an encrypted hash. To do this, see the Ansible FAQ.
+## Your best bet is probably using the `mkpasswd` on a Linux machine.
+## https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-generate-encrypted-passwords-for-the-user-module
+
+users:
+  - username: celal
+    name: Celal
+    state: present
+    groups: [ 'adm','sudo' ]
+    password: "$y$j9T$HZCsqBrfCIBC5wZZ91RGM.$V7JJMXU/3W1L2WTCaUfdA3JS5/HOrOIUrHhOebXCkJD"
+    shell: "/bin/bash"
+    authorized_keys:
+      - public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9EKEZ9VtKulDa3FIgOTT8AHJWCySS9qk6iXx+GzWY0oUdnvdlfggrvTQN3y9WFusHuAzYm1rfWP6g9ZFM0RKLKkrqvt+dncyY9ekjbs+bmemSORxbMH5hMYMw0Vx4z0cdp5dOB+MtHJohkhuppUoaxeUxubU+i7hUQXUou7KAaBHMcByKmrnK4Yj+bj1dZSLc8lQJvkHks+/eLTVQln6oQQu0BXak1JNl3nBZ44EJSkAsEFW9fIOXIR21AbTPm0eLLgcfWNIITlcPHRO4rvgENGawZiEBzAu2u1V3C3GiCb6wZk28NA2jQn6wxV9YvVEq03yb02f8NDMfg6li23iT ssh-key-2024-01-13"
+
+#   - username: bob
+#     name: Bob Smith
+#     state: present
+#     password: "$6$mysecretsalt$qJbapG68nyRab3gxvKWPUcs2g3t0oMHSHMnSKecYNpSi3CuZm.GbBqXO8BE6EI6P1JUefhA0qvD7b5LSh./PU1"
+#     groups: ['adm','sudo']
+#     shell: "/bin/bash"
+#     authorized_keys:
+#       - public_key: "ssh-ed25519 AAAAC3NzaC1anotherfakekeyIMVIzwQXBzxxD9b8Erd1FKVvu bob"
