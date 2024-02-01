@@ -4,8 +4,8 @@ services:
   traefik:
     image: traefik:v2.10
 
-  mariadb: 
-    image: mariadb:10.11
+#  mariadb:
+#    image: mariadb:10.11
 
   php:
     build:
@@ -13,4 +13,4 @@ services:
       target: base
     depends_on:
       - traefik
-      - mariadb
+#      - mariadb
