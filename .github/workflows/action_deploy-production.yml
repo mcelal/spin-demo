@@ -60,7 +60,8 @@ jobs:
           stack_name: "${{ env.PROJECT_NAME }}"
         env:
           # 👇 Ensure this makes sense for your application.
-          TRAEFIK_HOST_RULE: "Host(`${{ env.DEPLOYMENT_URL_HOSTNAME }}`)"
+#          TRAEFIK_HOST_RULE: "Host(`${{ env.DEPLOYMENT_URL_HOSTNAME }}`)"
+          TRAEFIK_HOST_RULE: "Host(`mcelal.dev`) || HostRegexp(`{subdomain:[a-z]+}.mcelal.dev`)"
           DB_ROOT_PASSWORD: "${{ secrets.DB_ROOT_PASSWORD }}"
           DB_NAME: "${{ secrets.DB_NAME }}"
           DB_USERNAME: "${{ secrets.DB_USERNAME }}"
