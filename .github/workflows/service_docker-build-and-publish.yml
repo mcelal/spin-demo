@@ -45,7 +45,7 @@ jobs:
           run \
           php \
           composer show --locked
-          
+
       - if: ${{ steps.composer-vendor-restore.outputs.cache-hit != 'true' }}
         name: Install Composer dependencies
         run: |
@@ -53,20 +53,20 @@ jobs:
           run \
           php \
           composer install --optimize-autoloader --no-interaction --no-progress --no-ansi
-      
+
       - name: Set env file
         run: |
           echo $BASE_64_SECRET | base64 -d > .env
           chmod 600 .env
         env:
           BASE_64_SECRET: ${{ secrets.ENV_FILE_BASE64 }}
-      
+
       - name: docker-build-action
         uses: serversideup/github-action-docker-build@v5
         with:
           tags: "${{ inputs.docker-tags }}"
           dockerfile: "${{ inputs.dockerfile }}"
-          registry: "ghcr.io"
+          registry: "registry.mcelal.dev"
           registry-username: "${{ github.actor }}"
           registry-token: "${{ secrets.GITHUB_TOKEN }}"
           platforms: "${{ inputs.platforms }}"

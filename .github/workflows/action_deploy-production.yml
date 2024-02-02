@@ -29,10 +29,11 @@ jobs:
     uses: ./.github/workflows/service_docker-build-and-publish.yml
     with:
       # 👇 Ensure these are the tags you want to publish to your registry.
-      docker-tags: ghcr.io/${{ github.repository }}:${{ github.ref_name }},ghcr.io/${{ github.repository }}:latest
+#      docker-tags: ghcr.io/${{ github.repository }}:${{ github.ref_name }},ghcr.io/${{ github.repository }}:latest
+      docker-tags: registry.mcelal.dev/${{ github.repository }}:${{ github.ref_name }},registry.mcelal.dev/${{ github.repository }}:latest
       environment: production # 👈 Make sure you created this environment in GitHub with the secrets above.
     secrets: inherit
-  
+
   deploy:
     needs: build
     runs-on: ubuntu-22.04
@@ -42,7 +43,7 @@ jobs:
     steps:
 
       - name: Get project name from repository name.
-        run: | 
+        run: |
           echo "PROJECT_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
 
       - uses: serversideup/github-action-docker-swarm-deploy@v1
@@ -50,7 +51,7 @@ jobs:
           # 👇 Ensure these are correct and that you've set the appropriate secrets.
           deployment_ssh_private_key: "${{ secrets.DEPLOYMENT_SSH_PRIVATE_KEY }}"
           remote_ssh_server_hostname: "${{ secrets.DEPLOYMENT_SSH_HOSTNAME }}"
-          registry: "ghcr.io"
+          registry: "registry.mcelal.dev"
           registry-username: "${{ github.actor }}"
           registry-token: "${{ secrets.GITHUB_TOKEN }}"
           stack_name: "${{ env.PROJECT_NAME }}"
