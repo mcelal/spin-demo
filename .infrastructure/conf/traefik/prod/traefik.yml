@@ -41,6 +41,11 @@ entryPoints:
         entrypoint:
           to: websecure
           scheme: https
+      tls:
+        domains:
+          - main: "mcelal.dev"
+            sans:
+              - "*.mcelal.dev"
     forwardedHeaders:
       trustedIPs: *trustedIPs
     proxyProtocol:
@@ -52,6 +57,7 @@ entryPoints:
       trustedIPs: *trustedIPs
     proxyProtocol:
       trustedIPs: *trustedIPs
+
 
 accessLog: {}
 log:
