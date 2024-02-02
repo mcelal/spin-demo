@@ -18,6 +18,7 @@ return [
      */
     'central_domains' => [
         'tenant.test',
+        'mcelal.dev',
     ],
 
     /**
