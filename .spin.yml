@@ -29,7 +29,7 @@ docker_user:
   gid: 9999
   ## Uncomment to set authorized SSH keys for the docker user.
   authorized_ssh_keys:
-    - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9EKEZ9VtKulDa3FIgOTT8AHJWCySS9qk6iXx+GzWY0oUdnvdlfggrvTQN3y9WFusHuAzYm1rfWP6g9ZFM0RKLKkrqvt+dncyY9ekjbs+bmemSORxbMH5hMYMw0Vx4z0cdp5dOB+MtHJohkhuppUoaxeUxubU+i7hUQXUou7KAaBHMcByKmrnK4Yj+bj1dZSLc8lQJvkHks+/eLTVQln6oQQu0BXak1JNl3nBZ44EJSkAsEFW9fIOXIR21AbTPm0eLLgcfWNIITlcPHRO4rvgENGawZiEBzAu2u1V3C3GiCb6wZk28NA2jQn6wxV9YvVEq03yb02f8NDMfg6li23iT ssh-key-2024-01-13"
+    - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDIfjkwuYl24fYo9nWUBJ1X6/lKcUX8hd+7rhGnTz8dmSI9n1vKg8MNSBPPJwn836uXbRZnRscGYYfdkJy3BA3f89FA6srmG5xtZvlOZbKdzpNv8oUUfxU2dDLGpJ+HutCEaaLqJpQnmHCIkepPHskI6KgbRGkxF8joGP/9jZ+zyEsdQGuO9rBj+n4SFRBEdxZi5M0y6Kkmz2f5HaVhjEBkwfAQISRSoycO1SOUOMpoQYOn1ejQaeTjSoFrXoyEEDn/pTQtY/Qd7yb0Mhzymyy7NW8CtwK1uaTVAwJTxwmnU8O7KN6rBtnk00Stb7Dmm5GH/ajeppbXCZk/G6YnbTdtOcDY32Sf5CWD26oLTufU347YyMCXiQ2Dfds8jsW+pI/Gduk09GEGicC5Cu4G0OyvKZuNdpMIkMFV3wXfC/HIekbfRQqqmATi2+dzMtxSC/Lzaw0b142ZfAYRWUMbpKIkUtOt/TiI+nNPb5/Ah/AejMCiGnjJNFGlPw75kwBMrEc= deploy@instance-20240113-2335"
   #   - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFRfXxUZ8q9vHRcQZ6tLb0KwGHu8xjQHfYopZKLmnopQ anotherfake@key"
 
 ##############################################################
