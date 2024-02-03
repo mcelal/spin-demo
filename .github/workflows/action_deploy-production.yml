@@ -31,6 +31,8 @@ jobs:
   tests:
     name: 'Run Test'
     uses: ./.github/workflows/service_run-test.yml
+    with:
+      environment: production
     secrets: inherit
 
   build:
@@ -41,7 +43,7 @@ jobs:
 #      docker-tags: ghcr.io/${{ github.repository }}:${{ github.ref_name }},ghcr.io/${{ github.repository }}:latest
       docker-tags: registry.mcelal.dev/${{ github.repository }}:${{ github.ref_name }},registry.mcelal.dev/${{ github.repository }}:latest
       environment: production # 👈 Make sure you created this environment in GitHub with the secrets above.
-#    secrets: inherit
+    secrets: inherit
 
   deploy:
     needs: [tests, build]

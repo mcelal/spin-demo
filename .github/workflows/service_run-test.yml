@@ -1,8 +1,9 @@
 on:
   workflow_call:
-
-env:
-  DOCKER_COMPOSE_CMD: docker compose -f docker-compose.yml -f docker-compose.ci.yml
+    inputs:
+      environment:
+        type: string
+        required: true
 
 jobs:
   run-test:
