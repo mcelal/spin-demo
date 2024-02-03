@@ -1,21 +1,5 @@
 on:
   workflow_call:
-    inputs:
-      platforms:
-        type: string
-        default: 'linux/amd64'
-      docker-tags:
-        required: true
-        type: string
-      dockerfile:
-        type: string
-        default: './Dockerfile'
-      target:
-        type: string
-        default: ''
-      environment:
-        type: string
-        required: true
 
 env:
   DOCKER_COMPOSE_CMD: docker compose -f docker-compose.yml -f docker-compose.ci.yml
