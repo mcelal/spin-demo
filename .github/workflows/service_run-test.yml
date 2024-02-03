@@ -1,0 +1,57 @@
+on:
+  workflow_call:
+    inputs:
+      platforms:
+        type: string
+        default: 'linux/amd64'
+      docker-tags:
+        required: true
+        type: string
+      dockerfile:
+        type: string
+        default: './Dockerfile'
+      target:
+        type: string
+        default: ''
+      environment:
+        type: string
+        required: true
+
+env:
+  DOCKER_COMPOSE_CMD: docker compose -f docker-compose.yml -f docker-compose.ci.yml
+
+jobs:
+  run-test:
+    runs-on: ubuntu-22.04
+    environment:
+      name: ${{ inputs.environment }}
+    steps:
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Restore composer cache (if available)
+        id: composer-vendor-restore
+        uses: actions/cache/restore@v3
+        with:
+          path: vendor/
+          key: ${{ runner.os }}-composer-vendor-${{ hashFiles('composer.lock') }}
+
+      - name: Install Dependencies
+        run: |
+          composer install -q --no-ansi \
+          --no-interaction --no-scripts --no-progress
+
+      - name: Set env file
+        run: |
+          echo $BASE_64_SECRET | base64 -d > .env
+          chmod 600 .env
+        env:
+          BASE_64_SECRET: ${{ secrets.ENV_FILE_BASE64 }}
+
+      - name: Run tests
+        run: php artisan test
+
