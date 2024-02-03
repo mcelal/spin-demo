@@ -36,6 +36,9 @@ jobs:
         env:
           BASE_64_SECRET: ${{ secrets.ENV_FILE_BASE64 }}
 
+      - name: Generate key
+        run: php artisan key:generate
+
       - name: Run tests
         run: php artisan test
 
