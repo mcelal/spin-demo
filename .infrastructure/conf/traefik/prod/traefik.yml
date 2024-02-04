@@ -41,11 +41,6 @@ entryPoints:
         entrypoint:
           to: websecure
           scheme: https
-      tls:
-        domains:
-          - main: "mcelal.dev"
-            sans:
-              - "*.mcelal.dev"
     forwardedHeaders:
       trustedIPs: *trustedIPs
     proxyProtocol:
@@ -57,6 +52,12 @@ entryPoints:
       trustedIPs: *trustedIPs
     proxyProtocol:
       trustedIPs: *trustedIPs
+    http:
+      tls:
+        domains:
+          - main: "mcelal.dev"
+            sans:
+              - "*.mcelal.dev"
 
 
 accessLog: {}
@@ -70,6 +71,11 @@ api:
 certificatesResolvers:
   letsencryptresolver:
     acme:
+      dnsChallenge:
+        provider: cloudflare
+        resolvers:
+          - "1.1.1.1:53"
+          - "1.0.0.1:53"
       email: "info@mcelal.com"
       storage: "/certificates/acme.json"
       httpChallenge:

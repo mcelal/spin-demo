@@ -7,6 +7,9 @@ services:
       ports:
         - "80:80"
         - "443:443"
+      environment:
+        - CF_API_EMAIL="mehmetcelalkara@outlook.com"
+        - CF_API_KEY="ZgYwHaaGHaayncg3QtfELus4q-Ejfaz5vLgs4VV1"
       deploy:
         update_config:
           parallelism: 1
