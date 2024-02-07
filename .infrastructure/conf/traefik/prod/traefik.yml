@@ -30,7 +30,7 @@ serversTransport:
 providers:
   docker:
     network: web-public
-    exposedbydefault: false
+    exposedByDefault: false
     swarmMode: true
 
 entryPoints:
@@ -59,18 +59,18 @@ log:
 
 api:
   dashboard: true
-  insecure: true
+  debug: true
 
 certificatesResolvers:
   cloudflare:
     acme:
+      email: "info@mcelal.com"
+      storage: "/certificates/acme.json"
       dnsChallenge:
         provider: cloudflare
         disablePropagationCheck: true
         resolvers:
           - "1.1.1.1:53"
           - "1.0.0.1:53"
-      email: "info@mcelal.com"
-      storage: "/certificates/acme.json"
-      httpChallenge:
-        entryPoint: web
+#      httpChallenge:
+#        entryPoint: web
