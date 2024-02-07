@@ -8,8 +8,8 @@ services:
         - "80:80"
         - "443:443"
       environment:
-        - CF_API_EMAIL=mehmetcelalkara@outlook.com
-        - CF_API_KEY=715dc289faf508b3784bcf1486dd46fa8cfec
+        - "CF_API_EMAIL=${CLOUDFLARE_EMAIL}"
+        - "CF_API_KEY=${CLOUDFLARE_API_KEY}"
       deploy:
         update_config:
           parallelism: 1
