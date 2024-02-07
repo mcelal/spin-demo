@@ -132,4 +132,3 @@ volumes:
 
 networks:
   web-public:
-    external: true
