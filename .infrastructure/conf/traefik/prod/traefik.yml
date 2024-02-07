@@ -52,13 +52,6 @@ entryPoints:
       trustedIPs: *trustedIPs
     proxyProtocol:
       trustedIPs: *trustedIPs
-    http:
-      tls:
-        domains:
-          - main: "mcelal.dev"
-            sans:
-              - "*.mcelal.dev"
-
 
 accessLog: {}
 log:

@@ -8,8 +8,8 @@ services:
         - "80:80"
         - "443:443"
       environment:
-        - CF_API_EMAIL="mehmetcelalkara@outlook.com"
-        - CF_API_KEY="ZgYwHaaGHaayncg3QtfELus4q-Ejfaz5vLgs4VV1"
+        - CF_API_EMAIL=mehmetcelalkara@outlook.com
+        - CF_API_KEY=715dc289faf508b3784bcf1486dd46fa8cfec
       deploy:
         update_config:
           parallelism: 1
@@ -25,6 +25,23 @@ services:
       configs:
         - source: traefik
           target: /etc/traefik/traefik.yml
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.traefik.entrypoints=http"
+        - "traefik.http.routers.traefik.priority=20"
+        - "traefik.http.routers.traefik.rule=Host(`dash1.crm.mcelal.dev`)"
+        - "traefik.http.middlewares.traefik-auth.basicauth.users=mcelal:$$apr1$$SJ4.6QMl$$ycchwDouUqzMkocD1PH1S."
+        - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
+        - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
+        - "traefik.http.routers.traefik-secure.entrypoints=https"
+        - "traefik.http.routers.traefik-secure.rule=Host(`dash1.crm.mcelal.dev`)"
+        - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
+        - "traefik.http.routers.traefik-secure.tls=true"
+        - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
+        - "traefik.http.routers.traefik-secure.tls.domains[0].main=crm.mcelal.dev"
+        - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.crm.mcelal.dev"
+        - "traefik.http.routers.traefik-secure.service=api@internal"
 
 #  mariadb:
 #    networks:
