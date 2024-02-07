@@ -24,8 +24,8 @@ on:
 
 # 👇 Set these variables to match your application needs. Most of them should work great by default.
 env:
-  DEPLOYMENT_URL_HOSTNAME: mcelal.dev
-  DEPLOYMENT_URL: https://mcelal.dev
+  DEPLOYMENT_URL_HOSTNAME: crm.mcelal.dev
+  DEPLOYMENT_URL: https://crm.mcelal.dev
 
 jobs:
   tests:
